@@ -5,6 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        //you can add your own custom colors here
         'mainWindow': '#ECF7FF',
         'dark-blue': '#00288A',
       },
