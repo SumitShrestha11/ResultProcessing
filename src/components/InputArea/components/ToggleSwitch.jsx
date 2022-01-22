@@ -1,8 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Switch } from '@headlessui/react'
 
-const ToggleSwitch = () => {
+const ToggleSwitch = ({setInputArea}) => {
     const [enabled, setEnabled] = useState(false);
+    useEffect(() => {
+      setInputArea(enabled);
+      
+    }, [enabled]);
+    
     return (
         <div className='mx-1'>
             <Switch

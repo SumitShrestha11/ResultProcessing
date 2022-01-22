@@ -11,10 +11,11 @@ const CameraFeed = () => {
                     width: 1920,
                     height: 1080
                 }
-            })
+            })//userstream
             .then(stream => {
                 let video = videoRef.current;
                 video.srcObject = stream;
+
                 video.play();
             })
             .catch(err => {
