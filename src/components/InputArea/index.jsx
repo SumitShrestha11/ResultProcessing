@@ -4,10 +4,9 @@ import ToggleSwitch from './components/ToggleSwitch';
 import Upload from './components/Upload';
 
 const InputArea = () => {
- const [enabled, setEnabled] = useState(false);
+ const [isUploadComponent, setIsUploadComponent] = useState(false);
  const setInputArea = (inputType) => {
-     console.log(inputType);
-     setEnabled(inputType);
+     setIsUploadComponent(inputType);
  }
 
   return (
@@ -25,7 +24,7 @@ const InputArea = () => {
         </div>
         <div className='mt-2'>
             {
-                !enabled ?<CameraFeed /> :<Upload />
+                !isUploadComponent ?<CameraFeed /> :<Upload />
             }
             
         </div>
