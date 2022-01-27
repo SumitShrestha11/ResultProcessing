@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Upload = () => {
+const Upload = ({setResultData}) => {
     const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
     const [uploadedFile, setUploadedFile] = useState({});
@@ -31,8 +31,8 @@ const Upload = () => {
             );
         }
         });
-        
-        console.log(res);
+        setResultData(res.data);
+        console.log(res.data);
 
         setMessage('File Uploaded');
     } catch (err) {

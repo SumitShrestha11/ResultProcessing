@@ -1,6 +1,7 @@
 /*
 for custom colors edit 'tailwind.config.js' file
 */
+import { useState } from 'react';
 import './App.scss';
 import InputArea from './components/InputArea';
 import { Logo } from './components/Logo';
@@ -9,6 +10,26 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 
 function App() {
+  const [resultData, setResultData] = useState({
+    studentInfo:{
+      name: "",
+      level:"",
+      campus:"",
+      yearpart:"",
+      examRollNo:"",
+      CRN:"",
+      TURegdNo:null,
+      programme:"",
+      tableData: [],
+      summary:{
+        marksEnteredBy:null,
+        verifiedBy:null,
+        date:"",
+        grandTotal:null,
+        result:""
+    }
+  }
+  });
   return (
     <>
       <div className="grid grid-cols-12 gap-5 mx-5 p-10 my-8 bg-mainWindow shadow-lg rounded-lg"> {/*main window*/}
@@ -16,11 +37,11 @@ function App() {
               <Logo />
               <span className='ml-5 inline-block'>Organization Name</span>
               <span className='mt-10 block text-dark-blue font-bold text-3xl'>Result</span>
-              <Result />
+              <Result resultData={resultData}/>
             </div>
             <div className='col-span-5'>
               <ErrorBoundary>
-                <InputArea />
+                <InputArea setResultData={setResultData}/>
               </ErrorBoundary>
             </div>
         </div>

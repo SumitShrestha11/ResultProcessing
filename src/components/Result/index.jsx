@@ -1,196 +1,75 @@
 import React from 'react'
 
-const Result = () => {
+const Result = ({resultData}) => {
     return (
-        <div className='bg-white rounded-lg shadow-lg'>
-            <table className="text-left w-full">
-                <tr>
-                    <th className="w-1/6">Name :-</th>
-                    <td className="w-2/6">Ram Kumar</td>
-                    <th className="w-1/6">Exam Roll No :-</th>
-                    <td className="w-2/6">1234</td>
-                </tr>
-                <tr>
-                    <th className="w-1/6">Level :-</th>
-                    <td className="w-2/6">Bachelors' in Engineering</td>
-                    <th className="w-1/6">CRN :-</th>
-                    <td className="w-2/6">2075/BCT/055</td>
-                </tr>
-                <tr>
-                    <th className="w-1/6">Campus :-</th>
-                    <td className="w-2/6">Thapathali Campus</td>
-                    <th className="w-1/6">T.U. Regd. No :-</th>
-                    <td className="w-2/6"></td>
-                </tr>
-                <tr>
-                    <th className="w-1/6"></th>
-                    <td className="w-2/6">Year/Part - I/I</td>
-                    <th className="w-1/6">Programme :-</th>
-                    <td className="w-2/6">Computer Engineering</td>
-                </tr>
-            </table>
+        <div className='bg-white rounded-lg shadow-lg p-2'>
+            <div className="flex">
+                <div className="flex-1">
+                    <p className="font-black">Name :- {resultData.studentInfo.name}</p>
+                    <p className="font-black">Level :- {resultData.studentInfo.level}</p>
+                    <p className="font-black">Campus :- {resultData.studentInfo.campus}</p>
+                    <p className="font-black">Year/Part :- {resultData.studentInfo.yearpart}</p>
+                </div>
+                <div className="flex-1">
+                    <p className="font-black">Exam Roll No :- {resultData.studentInfo.examRollNo}</p>
+                    <p className="font-black">CRN :- {resultData.studentInfo.CRN}</p>
+                    <p className="font-black">T.U. Regd. No :- {resultData.studentInfo.TURegdNo}</p>
+                    <p className="font-black">Programme :- {resultData.studentInfo.programme}</p>
+                </div>
+            </div>
             <br></br>
             <table className="border-2 border-black text-center w-full">
-                <tr>
-                    <th className="border-2 border-black border-b-0 w-1/3 underline underline-offset-2 decoration-2" colSpan="2">Subjects</th>
-                    <th className="border-2 border-black" colSpan="2">Full Marks</th>
-                    <th className="border-2 border-black" colSpan="2">Pass Marks</th>
-                    <th className="border-2 border-black" colSpan="2">Marks Obtained</th>
-                    <th className="border-2 border-black" rowSpan="2">Total</th>
-                    <th className="border-2 border-black" rowSpan="2">Remarks</th>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0 border-t-0">Code</th>
-                    <th className="border-2 border-black border-l-0 border-t-0">Title</th>
-                    <th className="border-2 border-black">Asst.</th>
-                    <th className="border-2 border-black">Final</th>
-                    <th className="border-2 border-black">Asst.</th>
-                    <th className="border-2 border-black">Final</th>
-                    <th className="border-2 border-black">Asst.</th>
-                    <th className="border-2 border-black">Final</th>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
-                <tr>
-                    <th className="border-2 border-black border-r-0">EX451</th>
-                    <th className="border-2 border-black border-l-0">Basic Electronics Engineering</th>
-                    <td className="border-2 border-black">20</td>
-                    <td className="border-2 border-black">80</td>
-                    <td className="border-2 border-black">8</td>
-                    <td className="border-2 border-black">32</td>
-                    <td className="border-2 border-black">18</td>
-                    <td className="border-2 border-black">40</td>
-                    <td className="border-2 border-black">58</td>
-                    <td className="border-2 border-black"></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th className="border-2 border-black border-b-0 w-1/3 underline underline-offset-2 decoration-2" colSpan="2">Subjects</th>
+                        <th className="border-2 border-black" colSpan="2">Full Marks</th>
+                        <th className="border-2 border-black" colSpan="2">Pass Marks</th>
+                        <th className="border-2 border-black" colSpan="2">Marks Obtained</th>
+                        <th className="border-2 border-black" rowSpan="2">Total</th>
+                        <th className="border-2 border-black" rowSpan="2">Remarks</th>
+                    </tr>
+                    <tr>
+                        <th className="border-2 border-black border-r-0 border-t-0">Code</th>
+                        <th className="border-2 border-black border-l-0 border-t-0">Title</th>
+                        <th className="border-2 border-black">Asst.</th>
+                        <th className="border-2 border-black">Final</th>
+                        <th className="border-2 border-black">Asst.</th>
+                        <th className="border-2 border-black">Final</th>
+                        <th className="border-2 border-black">Asst.</th>
+                        <th className="border-2 border-black">Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {resultData.tableData?resultData.tableData.map(subjectResult => {
+                        return (
+                            <tr>
+                                <th className="border-2 border-black border-r-0">{subjectResult?subjectResult.code:""}</th>
+                                <th className="border-2 border-black border-l-0">{subjectResult?subjectResult.subject:""}</th>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.fullMarks.asst:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.fullMarks.final:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.passMarks.asst:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.passMarks.final:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.obtainedMarks.asst:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.obtainedMarks.final:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.total:""}</td>
+                                <td className="border-2 border-black">{subjectResult?subjectResult.remarks:""}</td>
+                            </tr>
+                        )
+                    }):""}
+                </tbody>
             </table>
             <br></br>
-            <table className=" border-2 border-black text-left w-full">
-                <tr>
-                    <th className="w-1/6">Marks Enter By :-</th>
-                    <td className="w-2/6"></td>
-                    <th className="w-1/6">Grand Total</th>
-                    <td className="w-1/6">500</td>
-                </tr>
-                <tr>
-                    <th className="w-1/6">Verified By :-</th>
-                    <td className="w-2/6"></td>
-                    <th className="w-1/6">Result</th>
-                    <td className="w-1/6">Passed</td>
-                </tr>
-                <tr>
-                    <th className="w-1/6">Date :-</th>
-                    <td className="w-2/6">10 JAN 2022</td>
-                    <th className="w-1/6"></th>
-                    <td className="w-1/6"></td>
-                </tr>
-            </table>
+            <div className="flex">
+                <div className="flex-1 font-black">
+                    <p>Marks Entered By :- {resultData.summary?resultData.summary.marksEnteredBy:""}</p>
+                    <p>Verified By :- {resultData.summary?resultData.summary.verifiedBy:""}</p>
+                    <p>Date :- {resultData.summary?resultData.summary.date:""}</p>
+                </div>
+                <div className="flex-1 font-black">
+                    <p>Grand Total :- {resultData.summary?resultData.summary.grandTotal:""}</p>
+                    <p>Result :- {resultData.summary?resultData.summary.result:""}</p>
+                </div>
+            </div>
         </div>
     )
 }
