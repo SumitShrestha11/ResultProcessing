@@ -1,8 +1,13 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
 
 const EditingTable = ({editData}) => {
     let table = [];
-
+    
+    const postData = async(values) => {
+        const res = await axios.post('http://localhost:5000/confirm', values);
+        console.log(res);
+    }
     const onClick = () => {
         let input = document.getElementsByName('array');
         for (let i = 0; i < input.length; i += 10) {
@@ -49,14 +54,16 @@ const EditingTable = ({editData}) => {
         };
 
         console.log(values);
+        postData(values);
     }
+        
 
   return (
     <div>
         <div className="flex">
             <div className="flex-1">
                 <p className="font-black">Name :- <input id="name" className="outline-none" defaultValue={editData.studentInfo.name}/></p>
-                <p className="font-black">Level :- <input id="level" className="outline-none" defaultValue={editData.studentInfo.level}/></p>
+                <p className="font-black">Level :- <input id="level" className="outline-none w-52" defaultValue={editData.studentInfo.level}/></p>
                 <p className="font-black">Campus :- <input id="campus" className="outline-none" defaultValue={editData.studentInfo.campus}/></p>
                 <p className="font-black">Year/Part :- <input id="yearpart" className="outline-none" defaultValue={editData.studentInfo.yearpart}/></p>
             </div>
