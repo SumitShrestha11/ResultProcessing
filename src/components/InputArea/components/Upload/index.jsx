@@ -5,7 +5,7 @@ const Upload = ({setResultData}) => {
     const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
     const [uploadedFile, setUploadedFile] = useState({});
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState(null);
     const [uploadPercentage, setUploadPercentage] = useState(0);
 
     const onChange = e => {
@@ -35,6 +35,9 @@ const Upload = ({setResultData}) => {
         console.log(res.data);
 
         setMessage('File Uploaded');
+        setTimeout(()=>{
+            setMessage(null);
+        },5000);
     } catch (err) {
         if (err.response.status === 500) {
         console.log("There was a problem with the server")
@@ -42,6 +45,9 @@ const Upload = ({setResultData}) => {
         } else {
         console.log(err.response.data.msg);
         setMessage(err.response.data.msg);
+        setTimeout(()=>{
+            setMessage(null);
+        },5000)
         }
         setUploadPercentage(0)
     }
@@ -58,7 +64,7 @@ const Upload = ({setResultData}) => {
                 />
                 <label className='custom-file-label flex justify-between cursor-pointer' htmlFor='customFile'>
                     <div className='p-1 ml-2'>{filename}</div>
-                    <div className='ml-1 bg-pink-500 px-2 py-1 rounded-lg'>Browse</div>
+                    <div className='transition duration-150 ease-in-out cursor-pointer ml-1 bg-pink-500 hover:bg-pink-600 px-2 py-1 rounded-lg'>Browse</div>
                 </label>
                 </div>
 
@@ -66,9 +72,13 @@ const Upload = ({setResultData}) => {
                 <input
                 type='submit'
                 value='Upload'
-                className='cursor-pointer bg-pink-500 mt-4 px-2 py-1 rounded-lg'
+                className='transition duration-150 ease-in-out cursor-pointer bg-pink-500 hover:bg-pink-600 transform hover:-translate-y-1 mt-4 px-2 py-1 rounded-lg'
                 />
             </form>
+            {message
+                ?(<div className='p-2 mt-2 rounded-lg bg-blue-200 text-center'>{message}</div>)
+                :''
+            }
         </>
     );
 };

@@ -11,10 +11,12 @@ const Result = ({resultData}) => {
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-2'>
-            {!editTable?<ResultTable resultData={resultData} />:<EditingTable editData={resultData}/>}
-            <button className='cursor-pointer bg-red-500 mt-4 px-2 py-1 rounded-lg' onClick={onClick}>
-                Edit
+            <div className='flex justify-end'>
+            <button className='transition duration-150 ease-in-out cursor-pointer bg-blue-500 hover:bg-blue-600 text-white mb-4 px-2 py-1 rounded-lg' onClick={onClick}>
+                {!editTable?'Edit':'Go Back'}
             </button>
+            </div>
+            {!editTable?<ResultTable resultData={resultData} />:<EditingTable editData={resultData}/>}
         </div>
     )
 }

@@ -1,6 +1,16 @@
-import React from 'react'
+import { useState } from 'react';
+import axios from 'axios';
 
 const ResultTable = ({resultData}) => {
+    const [message, setMessage] = useState(null);
+    const onClick = async() => {
+        const res = await axios.post('http://localhost:5000/confirm', resultData);
+        setMessage(res.data);
+        setTimeout(()=>{
+            setMessage(null);
+        },5000)
+        
+    }
   return (
     <div>
       <div className="flex">
@@ -70,6 +80,15 @@ const ResultTable = ({resultData}) => {
                     <p>Result :- {resultData.summary?resultData.summary.result:""}</p>
                 </div>
             </div>
+            <div className='grid align-middle justify-center'>
+                <button className='transition duration-150 ease-in-out cursor-pointer bg-green-500 hover:bg-green-600 transform hover:-translate-y-1 mt-4 px-2 py-1 rounded-lg' onClick={onClick}>
+                    Confirm
+                </button>
+            </div>
+            {message
+            ?(<div className='p-2 mt-2 rounded-lg bg-blue-200 text-center'>{message}</div>)
+            :''
+            }
     </div>
   )
 }

@@ -1,12 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const EditingTable = ({editData}) => {
+    const [message, setMessage] = useState(null);
     let table = [];
     
     const postData = async(values) => {
         const res = await axios.post('http://localhost:5000/confirm', values);
-        console.log(res);
+        setMessage(res.data);
+        setTimeout(()=>{
+            setMessage(null);
+        },5000)
     }
     const onClick = () => {
         let input = document.getElementsByName('array');
@@ -127,9 +131,16 @@ const EditingTable = ({editData}) => {
                 <p>Result :- <input id="result" className="outline-none" defaultValue={editData.summary.result}/></p>
             </div>
         </div>
-        <button className='cursor-pointer bg-green-500 mt-4 px-2 py-1 rounded-lg' onClick={onClick}>
-            Confirm
-        </button>
+        <div className='grid align-middle justify-center'>
+            <button className='transition duration-150 ease-in-out cursor-pointer bg-green-500 hover:bg-green-600 transform hover:-translate-y-1 mt-4 px-2 py-1 rounded-lg' onClick={onClick}>
+                Confirm
+            </button>
+        </div>
+        {message
+            ?(<div className='p-2 mt-2 rounded-lg bg-blue-200 text-center'>{message}</div>)
+            :''
+        }
+
     </div>
   )
 }
