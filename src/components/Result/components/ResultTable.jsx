@@ -50,9 +50,9 @@ const ResultTable = ({resultData}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {resultData.tableData?resultData.tableData.map(subjectResult => {
+                    {resultData.tableData?resultData.tableData.map((subjectResult, index) => {
                         return (
-                            <tr>
+                            <tr key={index}>
                                 <th className="border-2 border-black border-r-0">{subjectResult?subjectResult.code:""}</th>
                                 <th className="border-2 border-black border-l-0">{subjectResult?subjectResult.subject:""}</th>
                                 <td className="border-2 border-black">{subjectResult?subjectResult.fullMarks.asst:""}</td>
@@ -65,7 +65,7 @@ const ResultTable = ({resultData}) => {
                                 <td className="border-2 border-black">{subjectResult?subjectResult.remarks:""}</td>
                             </tr>
                         )
-                    }):""}
+                    }):<tr></tr>}
                 </tbody>
             </table>
             <br></br>

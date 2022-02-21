@@ -2,7 +2,7 @@ import {useState} from 'react'
 import ResultTable from './components/ResultTable'
 import EditingTable from './components/EditingTable'
 
-const Result = ({resultData}) => {
+const Result = ({resultData, setResultData}) => {
     const [editTable, setEditTable] = useState(false);
 
     const onClick = () => {
@@ -16,7 +16,7 @@ const Result = ({resultData}) => {
                 {!editTable?'Edit':'Go Back'}
             </button>
             </div>
-            {!editTable?<ResultTable resultData={resultData} />:<EditingTable editData={resultData}/>}
+            {!editTable?<ResultTable resultData={resultData} />:<EditingTable editData={resultData} setEditData={setResultData}/>}
         </div>
     )
 }
