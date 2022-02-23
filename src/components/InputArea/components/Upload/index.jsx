@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Upload = ({setResultData}) => {
+const Upload = ({setIsLoading, setResultData}) => {
     const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
-    const [uploadedFile, setUploadedFile] = useState({});
     const [message, setMessage] = useState(null);
     const [uploadPercentage, setUploadPercentage] = useState(0);
 
@@ -15,6 +14,7 @@ const Upload = ({setResultData}) => {
     
     const onSubmit = async e => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData();
     formData.append('file', file);
 
@@ -29,15 +29,22 @@ const Upload = ({setResultData}) => {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
             )
             );
+            if(uploadPercentage===100){
+                setMessage('File Uploaded');
+            }
+            setTimeout(()=>{
+                setMessage(null);
+            },5000);
         }
         });
+                
         setResultData(res.data);
+        if(res.data){
+            setIsLoading(false);
+            
+        }
         console.log(res.data);
-
-        setMessage('File Uploaded');
-        setTimeout(()=>{
-            setMessage(null);
-        },5000);
+        
     } catch (err) {
         if (err.response.status === 500) {
         console.log("There was a problem with the server")
@@ -52,6 +59,7 @@ const Upload = ({setResultData}) => {
         setUploadPercentage(0)
     }
     };
+
     return (
         <>
             <form onSubmit={onSubmit}>

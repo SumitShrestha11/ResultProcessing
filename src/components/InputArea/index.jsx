@@ -3,7 +3,7 @@ import CameraFeed from './components/CameraFeed';
 import ToggleSwitch from './components/ToggleSwitch';
 import Upload from './components/Upload';
 
-const InputArea = ({setResultData}) => {
+const InputArea = ({setIsLoading, setResultData}) => {
  const [isCameraComponent, setIsCameraComponent] = useState(false);
  const setInputArea = (inputType) => {
      setIsCameraComponent(inputType);
@@ -24,7 +24,7 @@ const InputArea = ({setResultData}) => {
         </div>
         <div className='mt-2'>
             {
-                !isCameraComponent ?<Upload setResultData={setResultData}/> :<CameraFeed />
+                !isCameraComponent ?<Upload setIsLoading={setIsLoading} setResultData={setResultData}/> :<CameraFeed />
             }
             
         </div>

@@ -10,6 +10,8 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  console.log(isLoading);
   const [resultData, setResultData] = useState({
     studentInfo:{
       name: "",
@@ -38,11 +40,11 @@ function App() {
               <Logo />
               <span className='ml-5 inline-block'>Organization Name</span>
               <span className='mt-10 block text-dark-blue font-bold text-3xl'>Result</span>
-              <Result resultData={resultData} setResultData={setResultData}/>
+              <Result isLoading={isLoading} resultData={resultData} setResultData={setResultData}/>
             </div>
             <div className='col-span-5'>
               <ErrorBoundary>
-                <InputArea setResultData={setResultData}/>
+                <InputArea setIsLoading={setIsLoading} setResultData={setResultData}/>
               </ErrorBoundary>
             </div>
         </div>
