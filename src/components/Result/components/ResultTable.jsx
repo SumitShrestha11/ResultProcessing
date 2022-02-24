@@ -2,29 +2,43 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const ResultTable = ({resultData}) => {
-    const [message, setMessage] = useState(null);
+    const initialMessage = {data:null,color:'blue'};
+    const [message, setMessage] = useState(initialMessage);
     const onClick = async() => {
-        const res = await axios.post('http://localhost:5000/confirm', resultData);
-        setMessage(res.data);
+        try{
+            const res = await axios.post('http://localhost:5000/confirm', resultData);
+            setMessage({...message,data:res.data});
+            
+        } catch(err) {
+            
+            setMessage({
+                data:"Invalid Data! Please check if the data is correct",
+                color:'red'
+            });
+            console.log({message})
+            // setTimeout(()=>{
+            //     setMessage(null);
+            // },5000)
+        }
         setTimeout(()=>{
-            setMessage(null);
-        },5000)
+            setMessage(initialMessage);
+        },10000)
         
     }
   return (
     <div>
-      <div className="flex">
+      <div className="flex gap-1">
                 <div className="flex-1">
-                    <p className="font-black">Name :- {resultData.studentInfo.name}</p>
-                    <p className="font-black">Level :- {resultData.studentInfo.level}</p>
-                    <p className="font-black">Campus :- {resultData.studentInfo.campus}</p>
-                    <p className="font-black">Year/Part :- {resultData.studentInfo.yearpart}</p>
+                    <p className={`font-black ${resultData.studentInfo.name?"":"bg-red-200"}`}>Name :- {resultData.studentInfo.name}</p>
+                    <p className={`font-black ${resultData.studentInfo.level?"":"bg-red-200"}`}>Level :- {resultData.studentInfo.level}</p>
+                    <p className={`font-black ${resultData.studentInfo.campus?"":"bg-red-200"}`}>Campus :- {resultData.studentInfo.campus}</p>
+                    <p className={`font-black ${resultData.studentInfo.yearpart?"":"bg-red-200"}`}>Year/Part :- {resultData.studentInfo.yearpart}</p>
                 </div>
                 <div className="flex-1">
-                    <p className="font-black">Exam Roll No :- {resultData.studentInfo.examRollNo}</p>
-                    <p className="font-black">CRN :- {resultData.studentInfo.CRN}</p>
+                    <p className={`font-black ${resultData.studentInfo.examRollNo?"":"bg-red-200"}`}>Exam Roll No :- {resultData.studentInfo.examRollNo}</p>
+                    <p className={`font-black ${resultData.studentInfo.CRN?"":"bg-red-200"}`}>CRN :- {resultData.studentInfo.CRN}</p>
                     <p className="font-black">T.U. Regd. No :- {resultData.studentInfo.TURegdNo}</p>
-                    <p className="font-black">Programme :- {resultData.studentInfo.programme}</p>
+                    <p className={`font-black ${resultData.studentInfo.programme?"":"bg-red-200"}`}>Programme :- {resultData.studentInfo.programme}</p>
                 </div>
             </div>
             <br></br>
@@ -53,15 +67,15 @@ const ResultTable = ({resultData}) => {
                     {resultData.tableData?resultData.tableData.map((subjectResult, index) => {
                         return (
                             <tr key={index}>
-                                <th className="border-2 border-black border-r-0">{subjectResult?subjectResult.code:""}</th>
-                                <th className="border-2 border-black border-l-0">{subjectResult?subjectResult.subject:""}</th>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.fullMarks.asst:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.fullMarks.final:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.passMarks.asst:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.passMarks.final:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.obtainedMarks.asst:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.obtainedMarks.final:""}</td>
-                                <td className="border-2 border-black">{subjectResult?subjectResult.total:""}</td>
+                                <th className={`border-2 border-black border-r-0 ${subjectResult.code?"":"bg-red-200"} `}>{subjectResult?subjectResult.code:""}</th>
+                                <th className={`border-2 border-black border-l-0 ${subjectResult.subject?"":"bg-red-200"}`}>{subjectResult?subjectResult.subject:""}</th>
+                                <td className={`border-2 border-black ${subjectResult.fullMarks.asst?"":"bg-red-200"}`}>{subjectResult?subjectResult.fullMarks.asst:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.fullMarks.final?"":"bg-red-200"}`}>{subjectResult?subjectResult.fullMarks.final:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.passMarks.asst?"":"bg-red-200"}`}>{subjectResult?subjectResult.passMarks.asst:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.passMarks.final?"":"bg-red-200"}`}>{subjectResult?subjectResult.passMarks.final:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.obtainedMarks.asst?"":"bg-red-200"}`}>{subjectResult?subjectResult.obtainedMarks.asst:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.obtainedMarks.final?"":"bg-red-200"}`}>{subjectResult?subjectResult.obtainedMarks.final:""}</td>
+                                <td className={`border-2 border-black ${subjectResult.total?"":"bg-red-200"}`}>{subjectResult?subjectResult.total:""}</td>
                                 <td className="border-2 border-black">{subjectResult?subjectResult.remarks:""}</td>
                             </tr>
                         )
@@ -85,8 +99,8 @@ const ResultTable = ({resultData}) => {
                     Confirm
                 </button>
             </div>
-            {message
-            ?(<div className='p-2 mt-2 rounded-lg bg-blue-200 text-center'>{message}</div>)
+            {message.data
+            ?(<div className={'p-2 mt-2 rounded-lg bg-'+message.color+'-200 text-center'}>{message.data}</div>)
             :''
             }
     </div>

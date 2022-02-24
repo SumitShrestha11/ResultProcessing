@@ -8,6 +8,7 @@ module.exports = {
         //you can add your own custom colors here
         'mainWindow': '#ECF7FF',
         'dark-blue': '#00288A',
+        'mainWindowTransparent': '#ECF7FF80'
       },
     },
   },

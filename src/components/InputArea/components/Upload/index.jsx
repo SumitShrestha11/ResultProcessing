@@ -28,22 +28,26 @@ const Upload = ({setIsLoading, setResultData}) => {
             parseInt(
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
             )
-            );
-            if(uploadPercentage===100){
-                setMessage('File Uploaded');
-            }
-            setTimeout(()=>{
-                setMessage(null);
-            },5000);
+            );     
         }
         });
+
+        if(res.status===200){
+            setMessage(res.data);
+        }
+        setTimeout(()=>{
+            setUploadPercentage(0);
+            setMessage(null);
+        },5000);
+
+        const response = await axios.get('http://localhost:5000/result-data');
                 
-        setResultData(res.data);
-        if(res.data){
+        setResultData(response.data);
+        if(response.data){
             setIsLoading(false);
             
         }
-        console.log(res.data);
+        console.log(response.data);
         
     } catch (err) {
         if (err.response.status === 500) {

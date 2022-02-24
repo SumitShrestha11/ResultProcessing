@@ -11,7 +11,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  console.log(isLoading);
   const [resultData, setResultData] = useState({
     studentInfo:{
       name: "",
