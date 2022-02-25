@@ -56,7 +56,9 @@ const EditingTable = ({editData, setEditData}) => {
     }
 
     const onRowAdd = () => {
+        let lastId = editData.tableData.length;
         const initialNewRowData = {
+            id: lastId+3,
             code:null,
             subject:null,
             fullMarks:{
@@ -133,9 +135,9 @@ const EditingTable = ({editData, setEditData}) => {
             </thead>
             <tbody>
                 {editData.tableData?editData.tableData.map((subjectData, index )=> {
-                    console.log(subjectData, index)
+                    console.log(subjectData)
                     return (
-                        <tr key={subjectData.subject+index} id={index}>
+                        <tr key={subjectData.id} id={index}>
                             <th className={`border-2 border-black border-r-0 ${subjectData.code?"":"bg-red-200"} `}><input id="code" className="text-center outline-none bg-inherit font-black" size="5" maxLength="5" defaultValue={subjectData.code} onChange={onResultDataChange} /></th>
                             <th className={`border-2 border-black border-l-0 ${subjectData.subject?"":"bg-red-200"}`}><textarea id="subject" className="bg-inherit resize-none outline-none font-black text-center overflow-hidden" rows="3" maxLength="100" defaultValue={subjectData.subject} onChange={onResultDataChange} /></th>
                             <td className={`border-2 border-black ${subjectData.fullMarks.asst?"":"bg-red-200"}`}><input id="fullMarks.asst" className="bg-inherit text-center outline-none" size="2" maxLength="2" defaultValue={subjectData.fullMarks.asst} onChange={onResultDataChange} /></td>
